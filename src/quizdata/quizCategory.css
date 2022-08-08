@@ -1,0 +1,39 @@
+.card-vertical {
+    display: flex;
+    margin-top: 2rem;
+    flex-direction: column;
+    width: 100%;
+    height: min-content;
+    justify-content: center;
+    align-items: center;
+}
+.card-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22rem;
+    height: 18rem;
+    margin: 1rem 2rem;
+}
+
+.card-vertical>img {
+    width: 20rem;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card-header {
+    display: flex;
+    position: absolute;
+   margin-bottom: 9rem;
+    
+
+}
+
+.card-desc {
+    text-align: center;
+   
+}
