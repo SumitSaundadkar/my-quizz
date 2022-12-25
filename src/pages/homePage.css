@@ -1,0 +1,21 @@
+.quiz-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height:min-content;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 5px;
+    margin-top: 2rem;
+    
+}
+.sub-title{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    color: var( --secondary-color);
+    font-style:bold;
+}
+.category-container{
+    display: flex;
+}
