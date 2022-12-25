@@ -1,19 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { QuizData } from "../../quizdata/quizData";
 import "../Questions/questionPage.css";
+import { actionConstants } from "../../hooks/actionConst";
+import { useQuiz } from "../../context/dataContext";
 const QuestionPage = () => {
-  //const navigate = useNavigate();
-  const { quizId } = useParams();
+  const navigate = useNavigate();
   const [myQuizData, setMyQuizData] = useState();
+  const [selectedOption, setSelectedOption] = useState([]);
+  const { quizId } = useParams();
+  const {
+    quizState: { currQuestion },
+    quizDispatch,
+  } = useQuiz();
+  const { SET_CURRQUE, SET_ANSWERS } = actionConstants;
 
   useEffect(() => {
     setMyQuizData(
       QuizData.find((item) => {
-        return item._id.toString() === quizId.toString();
+        return item?._id === Number(quizId);
       })
     );
   }, [quizId]);
+
+  const questions = myQuizData?.questions;
+
+  let question, options;
+
+  if (questions) {
+    question = questions[Number(currQuestion)]?.question;
+    options = questions[Number(currQuestion)]?.options;
+  }
+
+  const nextHandler = () => {
+    quizDispatch({
+      type: SET_CURRQUE,
+      payload: { currQue: currQuestion + 1 },
+    });
+  };
+
+  const submitHandler = () => {
+    quizDispatch({
+      type: SET_ANSWERS,
+      payload: { selectedOption },
+    });
+    navigate("/result");
+  };
 
   return (
     <div className="quiz-container">
@@ -21,18 +53,54 @@ const QuestionPage = () => {
         <h2 className="justify-center">{myQuizData?.heading}</h2>
         <div className="ques-and-score">
           <div className="count">
-            <p className="tag">Question: </p>
-            <p className="tag-value"></p>
+            <p className="tag">
+              Question:{" "}
+              <p>
+                {currQuestion + 1} / {questions?.length}{" "}
+              </p>
+            </p>
+            <p className="tag-value"> </p>
           </div>
           <div className="count">
-            <p className="tag-value"></p>
+            <p className="tag-value"> </p>
           </div>
         </div>
-        {myQuizData?.questions.map((el) => {
-          return <li>{el.question}</li>;
-        })}
 
-        <button className="btn btn-primary next-btn">submit</button>
+        <div className="qt_container">
+          <h3>{question}</h3>
+          {options?.map((el, index) => {
+            return (
+              <div
+                className="option-wrapper"
+                onClick={() => {
+                  selectedOption[currQuestion] = el;
+                  setSelectedOption([...selectedOption]);
+                }}
+              >
+                <li
+                  className={`option ${
+                    selectedOption[currQuestion]?.value === el.value
+                      ? "option-active"
+                      : ""
+                  }`}
+                >
+                  {el.value}
+                </li>
+              </div>
+            );
+          })}
+        </div>
+
+        <button
+          className="btn btn-primary next-btn"
+          onClick={() =>
+            currQuestion + 1 === questions.length
+              ? submitHandler()
+              : nextHandler()
+          }
+        >
+          {currQuestion + 1 === questions?.length ? "submit" : "next"}
+        </button>
       </div>
     </div>
   );

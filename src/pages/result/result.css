@@ -1,0 +1,53 @@
+.quiz-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem
+}
+
+.trophy-img {
+    width: 8rem;
+    height: 15rem;
+    display: flex;
+    margin: auto;
+}
+
+.home-btn {
+    display: flex;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+.result-icon {
+    font-size: 3rem
+}
+
+.btn-info {
+    display: flex;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+.btn-info:hover {
+    color: black;
+}
+
+.option-missed {
+    background-color: #338f2a !important;
+}
+
+.extra-info {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.q-info {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 10px;
+}
+
+.q-info-label {
+    font-size: 1.4rem
+}

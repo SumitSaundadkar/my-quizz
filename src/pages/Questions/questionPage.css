@@ -32,7 +32,7 @@
 }
 
 .option-wrapper {
-    padding-top: 2rem;
+    padding-top: 1rem;
     width: 100%;
     text-align: center;
     list-style: none;
@@ -47,15 +47,14 @@
 .option {
     display: block;
     background-color: var(--light-background);
-    padding: 1.8rem;
+    padding: 1rem;
     cursor: pointer;
-    margin-bottom: 1rem;
     list-style: none;
     border-radius: 8px;
 }
 
 .option:hover {
-    background-color: var(--light-background-hover);
+    background-color: rgb(219, 226, 226);
 }
 
 .option:last-child {
@@ -70,7 +69,7 @@
 
 .option-active {
     background-color: grey;
-    color: var(--white);
+    color: whitesmoke;
     pointer-events: none;
 }
 
