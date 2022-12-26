@@ -57,7 +57,7 @@ export const Result = () => {
   useEffect(() => {
     calcScore();
     window.scrollTo(0, 0);
-  }, []);
+  });
 
   const homepageHandler = () => {
     navigate("/");
